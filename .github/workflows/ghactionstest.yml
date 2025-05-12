@@ -13,3 +13,4 @@ jobs:
           pwd
           echo "${{ github.workspace }}"
           ls ${{ github.workspace }}
+          ./test.sh
