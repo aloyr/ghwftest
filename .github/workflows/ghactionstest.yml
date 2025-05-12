@@ -2,7 +2,7 @@ name: Github wf test
 on:
   push:
     tags:
-      - *
+      - v*
 jobs:
   text-action:
     runs-on: ubuntu-latest
