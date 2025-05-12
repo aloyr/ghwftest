@@ -22,5 +22,10 @@ jobs:
           password: ${{ secrets.GH_PAT }}
       - name: build image
         run: |
-          docker build . --tag ghcr.io/aloyr/hello-docker-gcr-demo:latest
+          docker build \
+            . \
+            --tag ghcr.io/aloyr/hello-docker-gcr-demo:latest \
+            --label "org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}" \
+            --label "org.opencontainers.image.description=Github docker test" \
+            --label "org.opencontainers.image.licenses=MIT"
           docker push ghcr.io/aloyr/hello-docker-gcr-demo:latest
