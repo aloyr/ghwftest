@@ -9,4 +9,6 @@ jobs:
           echo "inside action step"
       - name: test2
         run: |
-          ./test.sh
+          pwd
+          echo "${{ github.workspace }}"
+          ls ${{ github.workspace }}
