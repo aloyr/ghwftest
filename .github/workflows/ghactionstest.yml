@@ -1,0 +1,13 @@
+name: Github wf test
+on:
+  push: [tags]
+jobs:
+  text-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test1
+        run: |
+          echo "inside action step"
+      - name: test2
+        run: |
+          ./test.sh
