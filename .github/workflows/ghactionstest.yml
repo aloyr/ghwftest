@@ -1,8 +1,5 @@
 name: Github wf test
-on: 
-  push:
-    tags:
-      - '*'
+on: [push]
 jobs:
   text-action:
     runs-on: ubuntu-latest
@@ -17,3 +14,13 @@ jobs:
           echo "${{ github.workspace }}"
           ls ${{ github.workspace }}
           ./test.sh
+      - name: login to gh container registry
+        users: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GH_USERNAME }}
+          password: ${{ secrets.GH_PAT }}
+      - name: build image
+        run: |
+          docker build . --tag ghcr.io/${{ secrets.GH_USERNAME }}/hello-docker-gcr-demo:latest
+          docker push ghcr.io/${{ secrets.GH_USERNAME }}/hello-docker-gcr-demo:latest
