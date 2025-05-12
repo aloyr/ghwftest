@@ -4,6 +4,7 @@ jobs:
   text-action:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: test1
         run: |
           echo "inside action step"
